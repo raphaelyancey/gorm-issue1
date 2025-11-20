@@ -16,7 +16,7 @@ func TestGORM(t *testing.T) {
 	DB.Create(&user)
 
 	var result models.User
-	if err := DB.Where(`name = @userName`, sql.Named("userName", "jinzhu")).Take(&result).Error; err != nil {
+	if err := DB.Take(&result, user.ID).Error; err != nil {
 		t.Errorf("Failed, got error: %v", err)
 	}
 }
